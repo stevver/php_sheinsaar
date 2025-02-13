@@ -1,1 +1,15 @@
-php
+PHP
+
+[harjutus01.php](harjutus01.php)  
+[harjutus04.php](harjutus04.php)  
+[harjutus05.php](harjutus05.php)  
+[harjutus06.php](harjutus06.php)
+[harjutus07.php](harjutus07.php)
+[harjutus08.php](harjutus08.php)
+[harjutus09.php](harjutus09.php)
+[harjutus10/](harjutus10/)
+[harjutus12.php](harjutus12.php)
+[harjutus13.php](harjutus13.php)
+[harjutus14.php](harjutus14.php)
+[img/](img/)
+[uploads/](uploads/)
