@@ -79,7 +79,7 @@
     echo "<hr>";
 
     // 8. MASSIIVID JA TSÜKLID (Bonus) – Tee koopiad poiste ja tüdrukute massiividest ning tekita suvalised paarid nii, et ükski nimi ei kordu
-    echo "<h3>8. Bonus – Suvalised paarid (nimed ei kordu)</h3>";
+    echo "<h3>8. Boonus – Suvalised paarid (nimed ei kordu)</h3>";
     // Tee massiivide koopiad
     $boysCopy = $boys;
     $girlsCopy = $girls;
