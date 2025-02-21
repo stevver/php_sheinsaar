@@ -22,7 +22,7 @@ $data = getDataFromCSV('data.csv');
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link active" href="index.php">Avaleht</a></li>
+                        <li class="nav-item active"><a class="nav-link" href="index.php">Avaleht</a></li>
                         <li class="nav-item"><a class="nav-link" href="pages/works.php">Tehtud tööd</a></li>
                         <li class="nav-item"><a class="nav-link" href="pages/skills.php">Oskused</a></li>
                         <li class="nav-item"><a class="nav-link" href="pages/contact.php">Kontakt</a></li>
@@ -36,9 +36,9 @@ $data = getDataFromCSV('data.csv');
     <main class="container mt-5">
         <div class="row align-items-center">
             <div class="col-md-6 text-center text-md-start">
-                <h1 class="fw-bold"><?= $data[0]['title'] ?></h1>
-                <h4 class="text-primary"><?= $data[0]['subtitle'] ?></h4>
-                <p><?= $data[0]['text'] ?></p>
+                <h1 class="fw-bold text-wrap" style="width: 12rem;"><?= $data[0]['title'] ?></h1>
+                <h4 class="text-secondary"><?= $data[0]['subtitle'] ?></h4>
+                <p class="text-wrap text-muted" style="width: 20rem;"><?= $data[0]['text'] ?></p>
                 <a href="#" class="btn btn-primary mt-3">Palka mind</a>
             </div>
             <div class="col-md-6 text-center">
@@ -47,7 +47,21 @@ $data = getDataFromCSV('data.csv');
         </div>
     </main>
 
-    <footer class="text-center mt-5 p-3 bg-primary text-white">
+    <main class="container mt-5">
+        <h1 class="fw-bold"><?= $data[1]['title'] ?></h1>
+        <h4 class="text-secondary"><?= $data[1]['subtitle'] ?></h4>
+        <div class="row align-items-center">
+            <div class="col-md-6 text-center">
+                <img src="<?= $data[1]['image'] ?>" alt="Nerd Image" class="nerd-img img-fluid" style="object-fit: cover;">
+            </div>
+            <div class="col-md-6 text-center text-md-start">
+                <p class="text-wrap text-muted" style="width: 20rem;"><?= $data[1]['text'] ?></p>
+                <a href="#" class="btn btn-primary mt-3">Lae alla CV</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="text-center mt-5 p-5 text-white" style="background-color: #5023f3cf;">
         © <?= date("Y") ?> SteverHeinsaar.ee
     </footer>
 </body>
