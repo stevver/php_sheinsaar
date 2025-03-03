@@ -1,0 +1,93 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    margin: auto;
+}
+
+.navbar {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar-brand {
+    margin-right: auto;
+}
+
+.navbar-nav {
+    text-align: center;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-right: 15px;
+}
+
+.nav-link {
+    margin-right: 15px;
+    font-weight: bold;
+    color: #1d1d1d;
+}
+
+.nav-link:hover {
+    color: #4834d4;
+}
+
+
+.left {
+    padding-left: 110px;
+}
+
+.container {
+    padding-left: 0px;
+    margin: auto;
+    max-width: 1000px;
+}
+
+h1, h2 {
+    font-weight: bold;
+    color: #333;
+}
+
+.text-muted {
+    color: #777;
+}
+
+.profile_img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.nerd_img {
+    width: 352px;
+    height: 220px;
+    border-radius: 10px;
+}
+
+.btn-primary {
+    background-color: #6c5ce7;
+    border-color: #6c5ce7;
+}
+
+.btn-primary:hover {
+    background-color: #4834d4;
+    border-color: #4834d4;
+}
+
+footer {
+    background-color: #6c5ce7;
+    color: rgba(255, 255, 255, 0.479);
+    padding: 20px;
+    text-align: center;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+p {
+    width: 20rem;
+}
