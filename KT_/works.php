@@ -41,7 +41,7 @@ $text4 = $data[2][4];
                     <h1><?= ($title) ?></h1>
                 </div>
                 <div class="text-md-start">
-                    <i class="fa-solid fa-asterisk"></i><p><?= ($text1) ?></p>
+                    <i class="fas fa-asterisk"></i><p><?= ($text1) ?></p>
                 </div>
 </body>
 </html>
