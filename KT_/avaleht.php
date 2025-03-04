@@ -22,22 +22,45 @@ $text2 = $data[1][3];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Avaleht</title>
+    <title>PHP KT</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        .box{
+            width: 250px;
+            height: 250px;
+            background: #08aeea50 url(images/profile.jpg) no-repeat;
+                background-size: cover;
+                background-position: top -10px center;
+                background-blend-mode: normal;
+            animation: morph 15s ease-in-out infinite;
+        }
+
+        @keyframes morph {
+            0%{
+                border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            }
+            50%{
+                border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+            }
+            100%{
+                border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            }
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-white">
         <div>
-            <a class="navbar-brand fw-bold" href=".">SteverHeinsaar</a>
+            <a class="navbar-brand fw-bold" href=".">SteverHeinsaar.ee</a>
         </div>
         <div style="padding-left: 500px;">
             <ul class="navbar-nav">
                 <a class="nav-link" href="index.php?leht=avaleht">Avaleht</a>
-                <a class="nav-link" href="index.php?leht=tehtud_tood">Tehtud tööd</a>
-                <a class="nav-link" href="index.php?leht=oskused">Oskused</a>
-                <a class="nav-link" href="index.php?leht=kontakt">Kontakt</a>
+                <a class="nav-link" href="index.php?leht=works">Tehtud tööd</a>
+                <a class="nav-link" href="index.php?leht=skills">Oskused</a>
+                <a class="nav-link" href="index.php?leht=contact">Kontakt</a>
                 <a class="nav-link" href="index.php?leht=admin">Admin</a>
             </ul>
         </div>
@@ -49,10 +72,10 @@ $text2 = $data[1][3];
                 <h1><?= ($title1) ?></h1>
                 <h4 class="text-secondary"> <?= ($subtitle1) ?> </h4>
                 <p class="text-muted"><?= ($text1) ?></p>
-                <a href="#" class="btn btn-primary">Palka mind <i class="fas fa-paper-plane"></i></a>
+                <a href="#" class="btn btn-primary py-2">Palka mind <i class="fas fa-paper-plane"></i></a>
             </div>
             <div class="column right col-md-6">
-                <img src="<?= ($image1) ?>" alt="Profile" class="profile_img img-fluid rounded-circle">
+                <div class="box"></div>
             </div>
         </div>
     </div>
@@ -71,7 +94,7 @@ $text2 = $data[1][3];
                     <div style="font-size: small;" class="me-5 text-muted"><strong style="font-size: 22px; color: black;">2+</strong><br>projekti<br>lõpetanud</div>
                     <div style="font-size: small;" class="me-5 text-muted"><strong style="font-size: 22px; color: black;">0</strong><br>ettevõttes<br>töötanud</div>
                 </div>
-                <a href="#" class="btn btn-primary mt-3">Lae alla CV <i class="fas fa-download"></i></a>
+                <a href="#" class="btn btn-primary mt-3 py-2">Lae alla CV <i class="fas fa-download"></i></a>
             </div>
         </div>
     </div>
