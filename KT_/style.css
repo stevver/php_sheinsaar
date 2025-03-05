@@ -34,13 +34,8 @@ body {
     color: #4834d4;
 }
 
-
-.left {
-    padding-left: 110px;
-}
-
 .container {
-    padding-left: 0px;
+    padding-left: 20px;
     margin: auto;
     max-width: 1000px;
 }
@@ -86,8 +81,5 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-p {
-    width: 20rem;
+    position: relative;
 }
