@@ -66,7 +66,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Page</title>
+    <title>Admin leht</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <style>
         body {
@@ -94,23 +94,24 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
 <body>
     <div class="container">
         <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true): ?>
-            <h1 class="mb-4">Admin Page</h1>
-            <a href="admin.php?logout=true" class="btn btn-danger mb-4">Logout</a>
-            <a href="avaleht.php" class="btn btn-secondary mb-4">Back to Main Page</a>
+            <h1 class="mb-4">Admin leht</h1>
+            <a href="admin.php?logout=true" class="btn btn-danger mb-4">Logi välja</a>
+            <a href="avaleht.php" class="btn btn-secondary mb-4">Tagasi avalehele</a>
             <hr>
-            <h2>Data Entries</h2>
+            <h2>Andme sisendid</h2>
             <div class="table-responsive">
                 <table class="table table-bordered table-striped">
                     <thead class="table-dark">
                         <tr>
-                            <th>Entry 1</th>
-                            <th>Entry 2</th>
-                            <th>Entry 3</th>
-                            <th>Entry 4</th>
-                            <th>Entry 5</th>
-                            <th>Entry 6</th>
-                            <th>Entry 7</th>
-                            <th>Entry 8</th>
+                            <th>Sisend 1</th>
+                            <th>Sisend 2</th>
+                            <th>Sisend 3</th>
+                            <th>Sisend 4</th>
+                            <th>Sisend 5</th>
+                            <th>Sisend 6</th>
+                            <th>Sisend 7</th>
+                            <th>Sisend 8</th>
+                            <th>Tegevus</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -122,9 +123,9 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
                                 <td>
                                     <form method="post" style="display:inline;">
                                         <input type="hidden" name="index" value="<?php echo $index; ?>">
-                                        <button type="submit" name="delete" class="btn btn-danger btn-sm">Delete</button>
+                                        <button type="submit" name="delete" class="btn btn-danger btn-sm mb-2">Kustuta</button>
                                     </form>
-                                    <button class="btn btn-warning btn-sm" onclick="editEntry(<?php echo $index; ?>)">Edit</button>
+                                    <button class="btn btn-warning btn-sm" onclick="editEntry(<?php echo $index; ?>)">Muuda</button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -132,79 +133,41 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
                 </table>
             </div>
             <hr>
-            <h2>Add New Entry</h2>
+            <h2>Lisa uus sisend</h2>
             <form method="post">
                 <div class="mb-3">
-                    <label for="image" class="form-label">Entry 1</label>
+                    <label for="image" class="form-label">Sisend 1</label>
                     <input type="text" class="form-control" id="image" name="image" required>
                 </div>
                 <div class="mb-3">
-                    <label for="title" class="form-label">Entry 2</label>
+                    <label for="title" class="form-label">Sisend 2</label>
                     <input type="text" class="form-control" id="title" name="title" required>
                 </div>
                 <div class="mb-3">
-                    <label for="subtitle" class="form-label">Entry 3</label>
+                    <label for="subtitle" class="form-label">Sisend 3</label>
                     <input type="text" class="form-control" id="subtitle" name="subtitle" required>
                 </div>
                 <div class="mb-3">
-                    <label for="text1" class="form-label">Entry 4</label>
+                    <label for="text1" class="form-label">Sisend 4</label>
                     <input type="text" class="form-control" id="text1" name="text1" required>
                 </div>
                 <div class="mb-3">
-                    <label for="text2" class="form-label">Entry 5</label>
+                    <label for="text2" class="form-label">Sisend 5</label>
                     <input type="text" class="form-control" id="text2" name="text2">
                 </div>
                 <div class="mb-3">
-                    <label for="text3" class="form-label">Entry 6</label>
+                    <label for="text3" class="form-label">Sisend 6</label>
                     <input type="text" class="form-control" id="text3" name="text3">
                 </div>
                 <div class="mb-3">
-                    <label for="text4" class="form-label">Entry 7</label>
+                    <label for="text4" class="form-label">Sisend 7</label>
                     <input type="text" class="form-control" id="text4" name="text4">
                 </div>
                 <div class="mb-3">
-                    <label for="text5" class="form-label">Entry 8</label>
+                    <label for="text5" class="form-label">Sisend 8</label>
                     <input type="text" class="form-control" id="text5" name="text5">
                 </div>
-                <button type="submit" name="add" class="btn btn-primary">Add Entry</button>
-            </form>
-            <hr>
-            <h2>Edit Entry</h2>
-            <form method="post" id="editForm" style="display:none;">
-                <input type="hidden" name="index" id="editIndex">
-                <div class="mb-3">
-                    <label for="editImage" class="form-label">Entry 1</label>
-                    <input type="text" class="form-control" id="editImage" name="image" required>
-                </div>
-                <div class="mb-3">
-                    <label for="editTitle" class="form-label">Entry 2</label>
-                    <input type="text" class="form-control" id="editTitle" name="title" required>
-                </div>
-                <div class="mb-3">
-                    <label for="editSubtitle" class="form-label">Entry 3</label>
-                    <input type="text" class="form-control" id="editSubtitle" name="subtitle" required>
-                </div>
-                <div class="mb-3">
-                    <label for="editText1" class="form-label">Entry 4</label>
-                    <input type="text" class="form-control" id="editText1" name="text1" required>
-                </div>
-                <div class="mb-3">
-                    <label for="editText2" class="form-label">Entry 5</label>
-                    <input type="text" class="form-control" id="editText2" name="text2">
-                </div>
-                <div class="mb-3">
-                    <label for="editText3" class="form-label">Entry 6</label>
-                    <input type="text" class="form-control" id="editText3" name="text3">
-                </div>
-                <div class="mb-3">
-                    <label for="editText4" class="form-label">Entry 7</label>
-                    <input type="text" class="form-control" id="editText4" name="text4">
-                </div>
-                <div class="mb-3">
-                    <label for="editText5" class="form-label">Entry 8</label>
-                    <input type="text" class="form-control" id="editText5" name="text5">
-                </div>
-                <button type="submit" name="edit" class="btn btn-warning">Save Changes</button>
+                <button type="submit" name="add" class="btn btn-primary">Lisa sisend</button>
             </form>
         <?php else: ?>
             <h1>Login</h1>
@@ -213,15 +176,15 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
             <?php endif; ?>
             <form method="post">
                 <div class="mb-3">
-                    <label for="username" class="form-label">Username</label>
+                    <label for="username" class="form-label">Kasutaja nimi</label>
                     <input type="text" class="form-control" id="username" name="username" required>
                 </div>
                 <div class="mb-3">
-                    <label for="password" class="form-label">Password</label>
+                    <label for="password" class="form-label">Parool</label>
                     <input type="password" class="form-control" id="password" name="password" required>
                 </div>
-                <button type="submit" name="login" class="btn btn-primary">Login</button>
-                <a href="avaleht.php" class="btn btn-secondary">Back to Main Page</a>
+                <button type="submit" name="login" class="btn btn-primary">Logi sisse</button>
+                <a href="avaleht.php" class="btn btn-secondary">Tagasi avalehele</a>
             </form>
         <?php endif; ?>
     </div>

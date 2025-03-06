@@ -19,6 +19,7 @@ $text4 = $data[3][5];
     <title>PHP KT</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
     <style>
         .scroll-to-top {
@@ -39,14 +40,13 @@ $text4 = $data[3][5];
     <nav class="navbar navbar-expand-lg navbar-light bg-white">
         <div class="container">
             <a class="navbar-brand fw-bold me-auto" href=".">SteverHeinsaar.ee</a>
-            <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navbarNav">
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            
-            <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="index.php?leht=avaleht">Avaleht</a>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="index.php?leht=avaleht">Avaleht</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="index.php?leht=works">Tehtud tööd</a>
@@ -89,6 +89,10 @@ $text4 = $data[3][5];
             </div>
         </div>
 
+        <br>
+        <br>
+        <br>
+        <br>
         <br>
         <br>
         <br>
