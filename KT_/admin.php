@@ -187,6 +187,46 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
                 <a href="avaleht.php" class="btn btn-secondary">Tagasi avalehele</a>
             </form>
         <?php endif; ?>
+        <div id="editForm" style="display:none;">
+            <h2>Muuda sisendit</h2>
+            <form method="post">
+                <input type="hidden" name="index" id="editIndex">
+                <div class="mb-3">
+                    <label for="editImage" class="form-label">Sisend 1</label>
+                    <input type="text" class="form-control" id="editImage" name="image" required>
+                </div>
+                <div class="mb-3">
+                    <label for="editTitle" class="form-label">Sisend 2</label>
+                    <input type="text" class="form-control" id="editTitle" name="title" required>
+                </div>
+                <div class="mb-3">
+                    <label for="editSubtitle" class="form-label">Sisend 3</label>
+                    <input type="text" class="form-control" id="editSubtitle" name="subtitle" required>
+                </div>
+                <div class="mb-3">
+                    <label for="editText1" class="form-label">Sisend 4</label>
+                    <input type="text" class="form-control" id="editText1" name="text1" required>
+                </div>
+                <div class="mb-3">
+                    <label for="editText2" class="form-label">Sisend 5</label>
+                    <input type="text" class="form-control" id="editText2" name="text2">
+                </div>
+                <div class="mb-3">
+                    <label for="editText3" class="form-label">Sisend 6</label>
+                    <input type="text" class="form-control" id="editText3" name="text3">
+                </div>
+                <div class="mb-3">
+                    <label for="editText4" class="form-label">Sisend 7</label>
+                    <input type="text" class="form-control" id="editText4" name="text4">
+                </div>
+                <div class="mb-3">
+                    <label for="editText5" class="form-label">Sisend 8</label>
+                    <input type="text" class="form-control" id="editText5" name="text5">
+                </div>
+                <button type="submit" name="edit" class="btn btn-primary">Salvesta muudatused</button>
+            </form>
+        </div>
+
     </div>
 
     <script>
