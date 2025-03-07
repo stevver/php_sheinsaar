@@ -1,104 +1,67 @@
-<?php
-// Määrame üleslaadimiskataloogi
-$target_dir = "uploads/";
+<!--Stever Heinsaar
+07.03.2025 -->
 
-// Kui kataloog puudub, loome selle (sendime ka alamkataloogide loomise vajadusel)
-if (!is_dir($target_dir)) {
-    mkdir($target_dir, 0777, true);
-}
-
-// Muutuja teate jaoks
-$message = "";
-
-if (isset($_POST["submit"])) {
-    // Kontrollime, kas fail on valitud ja üleslaadimise protsessis vigu ei esine
-    if (isset($_FILES["image"]) && $_FILES["image"]["error"] == 0) {
-        $file_name = $_FILES["image"]["name"];
-        $file_tmp  = $_FILES["image"]["tmp_name"];
-        // Faili laiendi määramine ja muutmine väikesteks tähtedeks
-        $extension = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
-        
-        // Lubatud faililaiendid: jpg ja jpeg
-        if ($extension == "jpg" || $extension == "jpeg") {
-            // Veendume, et fail on pilt
-            if (getimagesize($file_tmp) !== false) {
-                // Loome faili nime unikaalseks – lisame ajatempli
-                $new_name = time() . "_" . basename($file_name);
-                $target_file = $target_dir . $new_name;
-                
-                // Proovime faili teisaldada
-                if (move_uploaded_file($file_tmp, $target_file)) {
-                    $message = "Faili üleslaadimine õnnestus!";
-                } else {
-                    $message = "Faili üleslaadimine ebaõnnestus! Veendu, et kataloog '$target_dir' eksisteerib ja on kirjutatav.";
-                }
-            } else {
-                $message = "Valitud fail ei ole pilt!";
-            }
-        } else {
-            $message = "Lubatud on ainult JPG ja JPEG failid!";
-        }
-    } else {
-        $message = "Palun vali fail üleslaadimiseks!";
-    }
-}
-?>
 <!DOCTYPE html>
 <html lang="et">
 <head>
     <meta charset="UTF-8">
-    <title>Pildi üleslaadimine ja kuvamine</title>
-    <style>
-        /* Pisipiltide kujundus */
-        .thumb {
-            width: 150px;
-            margin: 10px;
-            border: 1px solid #ddd;
-            padding: 5px;
-            transition: 0.3s;
-        }
-        .thumb:hover {
-            border-color: #777;
-        }
-        .gallery {
-            display: flex;
-            flex-wrap: wrap;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Harjutus 13</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
+    <div class="container">
+        <h1>Harjutus 13</h1>
+        <h3>Pildi üleslaadimine:</h3>
+        <form action="" method="post" enctype="multipart/form-data">
+            <input type="file" name="minu_fail" accept="image/jpeg, image/jpg"><br>
+            <br>
+            <input type="submit" value="Lae üles" class="btn btn-primary">
+        </form>
 
-<h2>Pildi üleslaadimine</h2>
-<form action="" method="post" enctype="multipart/form-data">
-    <!-- failide valikul on piiranguks lisatud ainult .jpg ja .jpeg -->
-    <input type="file" name="image" accept=".jpg,.jpeg"><br><br>
-    <input type="submit" name="submit" value="Lae üles!">
-</form>
-<p><?php echo $message; ?></p>
+        <?php
+            $pildi_asukoht = 'uploads/';
+            if (isset($_FILES["minu_fail"]) && $_FILES["minu_fail"]["error"] == 0) {
+                $file_name = $_FILES["minu_fail"]["name"];
+                $file_tmp  = $_FILES["minu_fail"]["tmp_name"];
+                $laiend = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
 
-<hr>
-<h2>Üleslaetud pildid</h2>
-<div class="gallery">
-<?php
-// Avame üleslaadimiskataloogi ja loeme selle sisu
-if (is_dir($target_dir)) {
-    if ($handle = opendir($target_dir)) {
-        while (($file = readdir($handle)) !== false) {
-            // Ignoreeri kataloogi enda kirjeid
-            if ($file != "." && $file != "..") {
-                // Kontrollime faililaiendit
-                $file_ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
-                if ($file_ext == "jpg" || $file_ext == "jpeg") {
-                    // Kuvame iga pildi klikkitava lingina – klikk avab täissuuruse pildi uues aknas
-                    echo '<a href="'.$target_dir.$file.'" target="_blank"><img src="'.$target_dir.$file.'" class="thumb" alt="Pilt"></a>';
+                if ($laiend == 'jpg' || $laiend == 'jpeg') {
+                    move_uploaded_file($file_tmp, $pildi_asukoht . $file_name);
+                    echo '<p>Fail on üles laetud.</p>';
+                } else {
+                    echo '<p>Fail peab olema JPG või JPEG formaadis.</p>';
                 }
             }
-        }
-        closedir($handle);
-    }
-}
-?>
-</div>
+        ?>
 
+        <br>
+        <h3>Üles laetud pildid:</h3>
+        <form method="post" action="">
+            <select name="pildid">
+                <option value="">Vali pilt</option>
+                    <?php 
+                        $kataloog = 'uploads';
+                        $asukoht=opendir($kataloog);
+                        while($rida = readdir($asukoht)){
+                            if($rida!='.' && $rida!='..'){
+                                echo "<option value='$rida'>$rida</option>\n";
+                            }
+                        }
+                    
+                    ?>
+            </select>
+                <input type="submit" value="Vaata" class="btn btn-primary">
+                <br>
+                <?php
+                    if(!empty($_POST['pildid'])){
+                        $pilt = $_POST['pildid'];
+                        $pildi_aadress = 'uploads/'.$pilt;
+                    
+                        echo "<img width='800px' src='$pildi_aadress'><br>";
+                    }
+                ?>
+        </form>
+    </div>
 </body>
 </html>

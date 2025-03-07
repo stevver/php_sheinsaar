@@ -1,94 +1,54 @@
+<!--Stever Heinsaar
+07.03.2025 -->
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="et">
 <head>
-  <meta charset="UTF-8">
-  <title>Image Gallery</title>
-  <style>
-    table {
-      border-collapse: collapse;
-    }
-    .thumbnail {
-      width: 150px;
-      height: 120px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Harjutus 14</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
+    <div class="container text-center">
+        <h1>Harjutus 14</h1>
+        <h3>Suvaline pilt</h3>
+        <?php
+            $kataloog = 'uploads';
+            $asukoht=opendir($kataloog);
+            $pildid = [];
+            while($rida = readdir($asukoht)){
+                if($rida!='.' && $rida!='..'){
+                    $pildid[] = $rida;
+                }
+            }
+            closedir($asukoht);
+            $suvaline_pilt = $pildid[array_rand($pildid)];
+            $pildi_aadress = 'uploads/'.$suvaline_pilt;
+            echo "<img width='800px' src='$pildi_aadress'><br>";
+        ?>
 
-<?php
-$directory = 'uploads';
-$columns = 3;
-
-echo "<a href='?mode=random'>Suvaline pilt</a> | ";
-echo "<a href='?mode=gallery'>Pildid</a>";
-echo "<hr>";
-
-function getScaledDimensions($imgPath, $maxWidth, $maxHeight) {
-    list($origWidth, $origHeight) = getimagesize($imgPath);
-    $ratio = 1;
-    if ($origWidth > $maxWidth || $origHeight > $maxHeight) {
-        $ratio = min($maxWidth / $origWidth, $maxHeight / $origHeight);
-    }
-    return [
-      'width'  => round($origWidth * $ratio),
-      'height' => round($origHeight * $ratio)
-    ];
-}
-
-if (isset($_GET['img'])) {
-    $img = $_GET['img'];
-    if (file_exists("$directory/$img")) {
-        echo "<h3>Pilt</h3>";
-        $imgPath = "$directory/$img";
-        $maxWidth = 800;
-        $maxHeight = 600;
-        $dims = getScaledDimensions($imgPath, $maxWidth, $maxHeight);
-        echo "<img src='$directory/$img' alt='Selected Image' width='{$dims['width']}' height='{$dims['height']}' />";
-        echo "<br><a href='?mode=gallery'>Back to Gallery</a>";
-    } else {
-        echo "<p>Image not found.</p>";
-    }
-    exit;
-}
-
-$files = array_diff(scandir($directory), array('.', '..'));
-
-if (isset($_GET['mode']) && $_GET['mode'] === 'random') {
-    if (!empty($files)) {
-        $randomImage = $files[array_rand($files)];
-        echo "<h3>Suvaline pilt</h3>";
-        $imgPath = "$directory/$randomImage";
-        $maxWidth = 800;
-        $maxHeight = 600;
-        $dims = getScaledDimensions($imgPath, $maxWidth, $maxHeight);
-        echo "<img src='$directory/$randomImage' alt='Random Image' width='{$dims['width']}' height='{$dims['height']}' />";
-    } else {
-        echo "<p>No images found in the directory.</p>";
-    }
-} else {
-    echo "<h3>Pildid</h3>";
-    echo "<table border='0' cellpadding='5'>";
-    $i = 0;
-    foreach ($files as $file) {
-        if ($i % $columns === 0) {
-            echo "<tr>";
-        }
-        echo "<td align='center'>";
-        echo "<a href='?img=$file'>";
-        echo "<img src='$directory/$file' alt='$file' class='thumbnail'/>";
-        echo "</a>";
-        echo "</td>";
-        $i++;
-        if ($i % $columns === 0) {
-            echo "</tr>";
-        }
-    }
-    if ($i % $columns !== 0) {
-        echo "</tr>";
-    }
-    echo "</table>";
-}
-?>
-
+        <br>
+        <hr>
+        <h3>Pisipildid</h3>
+        <?php
+            $pisi_pildi_laius = 200;
+            $pisi_pildi_korgus = 115;
+            $veergude_arv = 3;
+            $rida = 0;
+            echo '<div class="row">';
+            foreach ($pildid as $pilt) {
+            $pildi_aadress = 'uploads/'.$pilt;
+            echo '<div class="col-md-4 mb-3">';
+            echo "<a href='$pildi_aadress' target='_blank'><img width='$pisi_pildi_laius' height='$pisi_pildi_korgus' src='$pildi_aadress'></a><br>";
+            echo '</div>';
+            $rida++;
+            if ($rida % $veergude_arv == 0) {
+                echo '</div><div class="row">';
+            }
+            }
+            echo '</div>';
+        ?>
+    </div>
 </body>
 </html>
